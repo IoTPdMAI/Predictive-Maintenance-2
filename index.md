@@ -18,4 +18,5 @@ The long and short of it is that Egil created a new framework for modeling RUL. 
 
 ### The PHM 2012 Challenge
 
-With the brief history lesson now complete, let's bring things back to the (near) present. 
+With the brief history lesson now complete, let's bring things back to the (near) present. The [PHM-2012 challenge](http://www.femto-st.fr/en/Research-departments/AS2M/Research-groups/PHM/IEEE-PHM-2012-Data-challenge.php) is the use case I decided to opt for, and your task is to use ball bearing failure data to fit a model that can predict the RUL of a bunch of other ball bearings. In principle it's pretty simple, but in reality the combination of odd time increments and an unfavorable proportion of training to test data make this pretty challenging. To cut a long story short, the approach taken was to carry out a Fourier transform on the data, normalize everything to the [-1,1] interval, and then fit an LSTM model to this data. 
+
