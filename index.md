@@ -13,3 +13,9 @@ Both of these methods are perfectly fine, but have their drawbacks. In the case 
 #### WTTE-RNN as an alternative
 
 A couple of years ago, a master's student in Sweden called Egil Martinsson came up with a brilliant new way of working on this problem. You can check out his [here](https://github.com/ragulpr/wtte-rnn), blog post [here](https://ragulpr.github.io/2016/12/22/WTTE-RNN-Hackless-churn-modeling/), and thesis [here](https://ragulpr.github.io/assets/draft_master_thesis_martinsson_egil_wtte_rnn_2016.pdf).
+
+The long and short of it is that Egil created a new framework for modeling RUL. Rather than seeking to estimate a probability of survival, his approach uses a recurrent neural network to estimate the parameters of a Weibull distribution, which itself is used to describe the number of steps remaining until failure. This to me is incredibly cool, and I was very excited about its potential when I first encountered it - so much so that I immediately dove into some RUL problems online in an effort to validate his method and create a couple of business cases for Quantillion (the startup I currently work for).
+
+### The PHM 2012 Challenge
+
+With the brief history lesson now complete, let's bring things back to the (near) present. 
