@@ -12,5 +12,4 @@ Both of these methods are perfectly fine, but have their drawbacks. In the case 
 
 #### WTTE-RNN as an alternative
 
-jioasjios
-
+A couple of years ago, a master's student in Sweden called Egil Martinsson came up with a brilliant new way of working on this problem. You can check out his [here](https://github.com/ragulpr/wtte-rnn), blog post [here](https://ragulpr.github.io/2016/12/22/WTTE-RNN-Hackless-churn-modeling/), and thesis [here](https://ragulpr.github.io/assets/draft_master_thesis_martinsson_egil_wtte_rnn_2016.pdf).
