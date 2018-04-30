@@ -64,7 +64,7 @@ After a fair amount of tinkering with the model and some ungodly training times 
 4. Flatten the output from both neural networks and concatenate it
 5. Pass this output through another neural network that estimates the parameters of a Weibull distribution
 
-Please note, this model is incredibly bulky and took about a week to train on a dedicated AWS server instance with a p3.2xlarge GPU. However, I like to think that the result was worth the wait...
+Please note, this model is incredibly bulky and took about a week to train on a dedicated AWS server instance with a p3.2xlarge GPU. However, I'm pretty happy with the progress I've made so far.
 
 <p float="left">
     <p align="middle">
@@ -72,3 +72,4 @@ Please note, this model is incredibly bulky and took about a week to train on a 
   <img src="/Rplot_log.png" width="400" /> 
 </p>
 
+The above couple of plots show the predictions for this hybrid model and, although it's certainly still a work in progress, this represents a pretty huge improvement over the simple LSTM model from above. 
