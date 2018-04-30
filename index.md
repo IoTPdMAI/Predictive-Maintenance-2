@@ -46,6 +46,6 @@ The data itself contained 8 training examples, each with between 600 and 2500 ob
 
 The above image displays the test performance of the first approach I took, which was a simple LSTM model that estimated the parameters of a Weibull distribution as per Egil's work. There's a fair amount going on here, so I'll just give you a brief description of what's going on. The linear slope is the real RUL for this test example, the smooth black line is the median of the distribution estimated by the model, and the two blue lines are the confidence intervals for this prediction. Because the WTTE-RNN estimates the parameters of a distribution with well-studied asymptotic properties and known moments, it seems logical to me that you would leverage these features of the model to capture uncertainty. Fortunately, this is pretty easy, as the quantile function of the Weibull distribution is very simple:
 
-$ Q(p\lvert \alpha, \beta) = \alpha (-\text{ln} (1-p)^{1/\beta}) $
+<a href="https://www.codecogs.com/eqnedit.php?latex=Q(p\lvert&space;\alpha,&space;\beta)&space;=&space;\alpha&space;(-\text{ln}&space;(1-p)^{1/\beta})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Q(p\lvert&space;\alpha,&space;\beta)&space;=&space;\alpha&space;(-\text{ln}&space;(1-p)^{1/\beta})" title="Q(p\lvert \alpha, \beta) = \alpha (-\text{ln} (1-p)^{1/\beta})" /></a>
 
 If the task was to predict RUL then this model fails totally, as it seems to think that most of the readings are identical until a sudden upsurge in activity blows out the confidence interval. 
