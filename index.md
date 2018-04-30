@@ -48,4 +48,8 @@ The above image displays the test performance of the first approach I took, whic
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=Q(p\lvert&space;\alpha,&space;\beta)&space;=&space;\alpha&space;(-\text{ln}&space;(1-p)^{1/\beta})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Q(p\lvert&space;\alpha,&space;\beta)&space;=&space;\alpha&space;(-\text{ln}&space;(1-p)^{1/\beta})" title="Q(p\lvert \alpha, \beta) = \alpha (-\text{ln} (1-p)^{1/\beta})" /></a>
 
-If the task was to predict RUL then this model fails totally, as it seems to think that most of the readings are identical until a sudden upsurge in activity blows out the confidence interval. 
+So we can easily plug in the probabilities of interest in the above equation for a given set of parameters and return upper and low bounds for the confidence interval.
+
+![GitHub Logo](/exp2.png)
+
+Now, if the task was to predict RUL then this model fails totally, as it seems to think that most of the readings are identical until a sudden upsurge in activity blows out the confidence interval. 
