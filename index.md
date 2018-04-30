@@ -14,7 +14,7 @@ Both of these methods are perfectly fine, but have their drawbacks. In the case 
 
 A couple of years ago, a master's student in Sweden called Egil Martinsson came up with a brilliant new way of working on this problem. You can check out his [here](https://github.com/ragulpr/wtte-rnn), blog post [here](https://ragulpr.github.io/2016/12/22/WTTE-RNN-Hackless-churn-modeling/), and thesis [here](https://ragulpr.github.io/assets/draft_master_thesis_martinsson_egil_wtte_rnn_2016.pdf).
 
-The long and short of it is that Egil created a new framework for modeling RUL. Rather than seeking to estimate a probability of survival, his approach uses a recurrent neural network to estimate the parameters of a Weibull distribution, which itself is used to describe the number of steps remaining until failure. This to me is incredibly cool, and I was very excited about its potential when I first encountered it - so much so that I immediately dove into some RUL problems online in an effort to validate his method and create a couple of business cases for Quantillion (the startup I currently work for).
+The long and short of it is that Egil created a new framework for modeling RUL. Rather than seeking to estimate a probability of survival, his approach uses a recurrent neural network to estimate the parameters of a Weibull distribution, which itself is used to describe the number of steps remaining until failure. He called it WTTE-RNN, which stands for Weibull Time-to-Event - Recurrent Neural Network. This to me is incredibly cool, and I was very excited about its potential when I first encountered it - so much so that I immediately dove into some RUL problems online in an effort to validate his method and create a couple of business cases for Quantillion (the startup I currently work for).
 
 ### The PHM 2012 Challenge
 
@@ -42,4 +42,10 @@ The data itself contained 8 training examples, each with between 600 and 2500 ob
 
 #### Model 1
 
-![GitHub Logo](/exp2.png)
+![GitHub Logo](/Rplot02.png)
+
+The above image displays the test performance of the first approach I took, which was a simple LSTM model that estimated the parameters of a Weibull distribution as per Egil's work. There's a fair amount going on here, so I'll just give you a brief description of what's going on. The linear slope is the real RUL for this test example, the smooth black line is the median of the distribution estimated by the model, and the two blue lines are the confidence intervals for this prediction. Because the WTTE-RNN estimates the parameters of a distribution with well-studied asymptotic properties and known moments, it seems logical to me that you would leverage these features of the model to capture uncertainty. Fortunately, this is pretty easy, as the quantile function of the Weibull distribution is very simple:
+
+$ Q(p\lvert \alpha, \beta) = \alpha (-\text{ln} (1-p)^{1/\beta}) $
+
+If the task was to predict RUL then this model fails totally, as it seems to think that most of the readings are identical until a sudden upsurge in activity blows out the confidence interval. 
