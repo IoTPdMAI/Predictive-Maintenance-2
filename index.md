@@ -72,4 +72,6 @@ Please note, this model is incredibly bulky and took about a week to train on a 
   <img src="/Rplot_log.png" width="400" /> 
 </p>
 
-The above couple of plots show the predictions for this hybrid model and, although it's certainly still a work in progress, this represents a pretty huge improvement over the simple LSTM model from above. 
+The above couple of plots show the predictions for this hybrid model and, although it's certainly still a work in progress, this represents a pretty huge improvement over the simple LSTM model from above. For one, the model now does a far better job of parsing the enormous period of invariance. Furthermore, rather than blowing out at the end, the model becomes more confident in its predictions as the test subject gets closer to failure. This, to me, is a huge improvement!
+
+That being said, I'm still working on this problem and I'd like to do more to smooth out the weird spike 2/3 into the RUL period. I think I'll do this by easing off the maxpooling a bit and expanding the receptive field of the CNN kernels a bit, too.
