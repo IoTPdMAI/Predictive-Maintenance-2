@@ -52,4 +52,18 @@ So we can easily plug in the probabilities of interest in the above equation for
 
 ![GitHub Logo](/exp2.png)
 
-Now, if the task was to predict RUL then this model fails totally, as it seems to think that most of the readings are identical until a sudden upsurge in activity blows out the confidence interval. 
+Now, if the task was to predict RUL then this model fails totally, as it seems to think that most of the readings are identical until a sudden upsurge in activity blows out the confidence interval. As we can see from the spectogram above, this is hardly a surprising shortcoming of the model. There's an absolutely huge period of invariance that the model has to somehow map to an outcome, a task that any reasonable sequence model would struggle with. A new approach was clearly needed!
+
+#### Model 2: CNN-RNN hybrid
+
+After a fair amount of tinkering with the model and some ungodly training times on AWS, I decided to switch things up. It seemed to me that there was still a clear temporal component to the problem, so a LSTM model was still warranted; however, I also decided it might be worth trying to incorporate visual tools, too. The end result was what I call a CNN-RNN hybrid, which does the following:
+
+1. Take a fixed slice of the data as above
+2. Pass this through an LSTM model and store the output
+3. At the same time, pass the same input through a CNN model with 2 convolutional layers with 32 and 64 filters respectively, kernel size of 5, max pooling, and ReLU non-linearities
+4. Flatten the output from both neural networks and concatenate it
+5. Pass this output through another neural network that estimates the parameters of a Weibull distribution
+
+Please note, this model is incredibly bulky and took about a week to train on a dedicated AWS server instance with a p3.2xlarge GPU. However, I like to think that the result was worth the wait...
+
+
