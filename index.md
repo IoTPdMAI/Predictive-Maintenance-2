@@ -18,6 +18,8 @@ The long and short of it is that Egil created a new framework for modeling RUL. 
 
 ### The PHM 2012 Challenge
 
+#### Data
+
 With the brief history lesson now complete, let's bring things back to the (near) present. The [PHM-2012 challenge](http://www.femto-st.fr/en/Research-departments/AS2M/Research-groups/PHM/IEEE-PHM-2012-Data-challenge.php) is the use case I decided to opt for, and your task is to use ball bearing failure data to fit a model that can predict the RUL of a bunch of other ball bearings. In principle it's pretty simple, but in reality the combination of odd time increments and an unfavorable proportion of training to test data make this pretty challenging. To cut a long story short, the approach taken was to carry out a Fourier transform on the data, normalize everything to the [-1,1] interval, and then fit an LSTM model to this data. You then end up with 1024-dimension data with a variable number of time points.
 
 As a first step, I decided to just follow Egil's modeling approach, coding everything in PyTorch, including the loss function derived in his thesis. In PyTorch, this looks like:
@@ -25,14 +27,19 @@ As a first step, I decided to just follow Egil's modeling approach, coding every
 ``` python
 
 class DWeibull_Loss(torch.nn.Module):
-    #
+    
     def __init__(self):
         super(DWeibull_Loss, self).__init__()
-    #
+    
     def forward(self, y_, a_, b_):
         hazard0 = torch.pow((y_ + 1e-35)/a_, b_)
         hazard1 = torch.pow((y_ + 1)/a_, b_)
         return -1*torch.mean(torch.log(torch.exp(hazard1-hazard0) - 1.0) - hazard1)
-
 ```
+Which basically the negative log likelihood of the discrete Weibull. 
+
+The data itself contained 8 training examples, each with between 600 and 2500 observations. However, this doesn't tell the full story, as in the actual training routine I wrote some code that randomly sampled a 100-period slice of data, which used as input to the model. The target was then the RUL of the last row in this slice of data. 
+
+#### Model 1
+
 
