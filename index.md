@@ -42,4 +42,4 @@ The data itself contained 8 training examples, each with between 600 and 2500 ob
 
 #### Model 1
 
-
+![GitHub Logo](/exp2.png)
