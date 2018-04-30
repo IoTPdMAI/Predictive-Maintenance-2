@@ -67,7 +67,8 @@ After a fair amount of tinkering with the model and some ungodly training times 
 Please note, this model is incredibly bulky and took about a week to train on a dedicated AWS server instance with a p3.2xlarge GPU. However, I like to think that the result was worth the wait...
 
 <p float="left">
-  <img src="/Rplot_exp.png" width="300" />
-  <img src="/Rplot_log.png" width="300" /> 
+    <p align="middle">
+  <img src="/Rplot_exp.png" width="400" />
+  <img src="/Rplot_log.png" width="400" /> 
 </p>
 
